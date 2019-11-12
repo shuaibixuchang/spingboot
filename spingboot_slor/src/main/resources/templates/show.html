@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jqeuy默认的css样式 -->
+    <link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css">
+
+    <link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
+    <!-- 这是jquery的核心包  -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 这是easyui的核心包  -->
+    <script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+
+<input type="text" id="usname">
+<input type="button" value="搜索" onclick="search()">
+<hr>
+<table id="dg"></table>
+
+<div id="add_dialog"></div>
+
+<script type="text/javascript">
+
+    search = function(){
+        $('#dg').datagrid({
+            url:'../solr/findUserList',
+            queryParams: {
+                username: $("#usname").val()
+            },
+            pagination:true,
+            pageSize:3,
+            pageList:[3,6,9,12],
+            toolbar: [{
+                iconCls: 'icon-add',
+                text:"新增",
+                handler: function(){
+                    $('#add_dialog').dialog({
+                        title: '新增页面',
+                        width: 400,
+                        height: 300,
+                        href: '../solr/toAdd',
+                        modal: true,
+                        buttons:[{
+                            text:'保存',
+                            handler:function(){
+                                $('#addFrom').form('submit', {
+                                    url:'',
+                                    onSubmit: function(){
+                                    },
+                                    success:function(data){
+
+                                    }
+                                });
+
+                            }
+                        },{
+                            text:'关闭',
+                            handler:function(){
+
+                                $("#add_dialog").dialog("close")
+                            }
+                        }]
+                    });
+                }
+            },'-',{
+                iconCls: 'icon-help',
+                handler: function(){alert('帮助按钮')}
+            }],
+            columns:[
+                [
+                {field:'userid',title:'用户id',width:100,align:'center'},
+                {field:'username',title:'用户名称',width:100,align:'center'},
+                {field:'usersex',title:'用户性别',width:100,align:'center'},
+                {field:'usershow',title:'用户简介',width:100,align:'center'}
+            ]
+            ]
+        });
+    }
+    $(function () {
+        search();
+    })
+</script>
+</body>
+</html>

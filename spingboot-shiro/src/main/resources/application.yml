@@ -1,0 +1,20 @@
+server:
+  port: 8081
+mybatis:
+  config-locations: classpath:mapping/confg.xml
+  mapper-locations: classpath:mapping/mapper/*.xml
+  type-aliases-package: com.jk.model
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 1011
+    url: jdbc:mysql://localhost:3306/shixun?useUnicode=true&characterEncoding=utf-8
+    username: root
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html

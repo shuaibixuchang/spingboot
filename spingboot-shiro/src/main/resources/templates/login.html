@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jqeuy默认的css样式 -->
+    <link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css">
+
+    <link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
+
+    <!-- 这是jquery的核心包  -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 这是easyui的核心包  -->
+    <script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyui/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<div id="dd" align="center">
+    <form action="/login" method="post">
+        用户名：
+        <input class="easyui-textbox"  style="width:150px" name="username" data-options="iconCls:'icon-man',required:true,prompt:'请输入账号'" >
+
+        <br><br>
+
+        密&nbsp;&nbsp;码：
+        <input class="easyui-textbox" style="width:150px" name="password" data-options="iconCls:'icon-lock',required:true" type="password"> <br><br>
+        <hr>
+        <span th:text="${msg}"></span>
+        <hr>
+        <input type="submit" value="登录">
+    </form>
+    <script type="application/javascript">
+        $('#dd').dialog({
+            title: '登陆页面',
+            width: 500,
+            height: 200,
+            collapsible:false,
+            minimizable:false,
+            maximizable:false,
+            closable:false,
+            draggable:false,
+            resizable:false,
+            modal: true
+            /*buttons:[{
+                text:'登陆',
+                iconCls:'icon-ok',
+                handler:function(){
+                    $('#loginform').form('submit', {
+                        url:'../login',
+                        onSubmit: function(){
+                            return $('#loginform').form('validate')
+                        },
+                        success:function(data){
+                            if(data=="1"){
+                                alert("用户名错误")
+                            }
+                            if(data=="2"){
+                                alert("密码错误")
+                            }
+                            if(data=="3"){
+                                location.href="toIndex"
+                            }
+
+                        }
+                    });
+                }
+            }]*/
+
+        });
+    </script>
+</div>
+</body>
+</html>
